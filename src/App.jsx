@@ -6,6 +6,7 @@ import { WelcomeMessage } from "./components/WelcomeMessage/WelcomeMessage";
 import { CounterPreview } from "./components/CounterPreview/CounterPreview";
 import { AutoRefreshingCounter } from "./components/AutoRefreshingCounter/AutoRefreshingCounter";
 import { ResponsiveLabel } from "./components/ResponsiveLabel/ResponsiveLabel";
+import { ProductsOnMount } from "./components/ProductsOnMount/ProductsOnMount";
 
 const INITIAL_SHOWS_STATES = {
 	welcomeMessage: false,
@@ -85,6 +86,15 @@ export const App = () => {
 			{responsiveLabel && (
 				<ExerciseContainer title={"Responsive Label"}>
 					<ResponsiveLabel />
+				</ExerciseContainer>
+			)}
+
+			<Button handleButton={() => handleButton("productsOnMount")}>
+				{`${productsOnMount ? "Hide" : "Show"} Products on Mount`}
+			</Button>
+			{productsOnMount && (
+				<ExerciseContainer title={"Products on Mount"}>
+					<ProductsOnMount />
 				</ExerciseContainer>
 			)}
 		</>
