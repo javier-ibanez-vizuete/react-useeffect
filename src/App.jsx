@@ -5,6 +5,7 @@ import { ExerciseContainer } from "./components/ExerciseContainer/ExerciseContai
 import { WelcomeMessage } from "./components/WelcomeMessage/WelcomeMessage";
 import { CounterPreview } from "./components/CounterPreview/CounterPreview";
 import { AutoRefreshingCounter } from "./components/AutoRefreshingCounter/AutoRefreshingCounter";
+import { ResponsiveLabel } from "./components/ResponsiveLabel/ResponsiveLabel";
 
 const INITIAL_SHOWS_STATES = {
 	welcomeMessage: false,
@@ -75,6 +76,15 @@ export const App = () => {
 			{autoRefreshingClock && (
 				<ExerciseContainer title={"Auto Refreshing Counter"}>
 					<AutoRefreshingCounter />
+				</ExerciseContainer>
+			)}
+
+			<Button handleButton={() => handleButton("responsiveLabel")}>
+				{`${responsiveLabel ? "Hide" : "Show"} Responsive Label`}
+			</Button>
+			{responsiveLabel && (
+				<ExerciseContainer title={"Responsive Label"}>
+					<ResponsiveLabel />
 				</ExerciseContainer>
 			)}
 		</>
