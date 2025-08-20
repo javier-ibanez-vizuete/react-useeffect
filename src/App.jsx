@@ -3,6 +3,7 @@ import "./App.css";
 import { Button } from "./components/Button/Button";
 import { ExerciseContainer } from "./components/ExerciseContainer/ExerciseContainer";
 import { WelcomeMessage } from "./components/WelcomeMessage/WelcomeMessage";
+import { CounterPreview } from "./components/CounterPreview/CounterPreview";
 
 const INITIAL_SHOWS_STATES = {
 	welcomeMessage: false,
@@ -48,12 +49,22 @@ export const App = () => {
 	return (
 		<>
 			<h1>EJERCICIOS USE EFFECT LAB</h1>
-			<Button handleButton={() => handleButton("welcomeMessage")}>{`${
-				welcomeMessage ? "Hide" : "Show"
-			} Welcome Message`}</Button>
+
+			<Button handleButton={() => handleButton("welcomeMessage")}>
+				{`${welcomeMessage ? "Hide" : "Show"} Welcome Message`}
+			</Button>
 			{welcomeMessage && (
 				<ExerciseContainer title={"Welcome Message"}>
 					<WelcomeMessage />
+				</ExerciseContainer>
+			)}
+
+			<Button handleButton={() => handleButton("counterPreview")}>
+				{`${counterPreview ? "Hide" : "Show"} Counter Preview`}
+			</Button>
+			{counterPreview && (
+				<ExerciseContainer title={"Counter Preview"}>
+					<CounterPreview />
 				</ExerciseContainer>
 			)}
 		</>
