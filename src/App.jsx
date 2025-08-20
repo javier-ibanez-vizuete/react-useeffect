@@ -1,5 +1,8 @@
 import { useState } from "react";
 import "./App.css";
+import { Button } from "./components/Button/Button";
+import { ExerciseContainer } from "./components/ExerciseContainer/ExerciseContainer";
+import { WelcomeMessage } from "./components/WelcomeMessage/WelcomeMessage";
 
 const INITIAL_SHOWS_STATES = {
 	welcomeMessage: false,
@@ -33,9 +36,26 @@ export const App = () => {
 		documentTitleUpdater,
 	} = shows;
 
+	const handleButton = (exercise) => {
+		console.log("Haciendo click");
+		console.log("Esto es exercise", exercise);
+
+		setShows((prevValue) => {
+			return { ...prevValue, [exercise]: !prevValue[exercise] };
+		});
+	};
+
 	return (
 		<>
 			<h1>EJERCICIOS USE EFFECT LAB</h1>
+			<Button handleButton={() => handleButton("welcomeMessage")}>{`${
+				welcomeMessage ? "Hide" : "Show"
+			} Welcome Message`}</Button>
+			{welcomeMessage && (
+				<ExerciseContainer title={"Welcome Message"}>
+					<WelcomeMessage />
+				</ExerciseContainer>
+			)}
 		</>
 	);
 };

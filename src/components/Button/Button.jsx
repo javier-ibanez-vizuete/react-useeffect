@@ -1,11 +1,11 @@
 import "./Button.css";
 
-export const Button = ({ bodyText, className, handleButton }) => {
+export const Button = ({ children, className, handleButton }) => {
 	const classN = `btn-exercise ${className ? className : ""}`;
 
 	return (
 		<button className={classN} onClick={handleButton}>
-			{bodyText}
+			{children}
 		</button>
 	);
 };
