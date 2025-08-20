@@ -4,6 +4,7 @@ import { Button } from "./components/Button/Button";
 import { ExerciseContainer } from "./components/ExerciseContainer/ExerciseContainer";
 import { WelcomeMessage } from "./components/WelcomeMessage/WelcomeMessage";
 import { CounterPreview } from "./components/CounterPreview/CounterPreview";
+import { AutoRefreshingCounter } from "./components/AutoRefreshingCounter/AutoRefreshingCounter";
 
 const INITIAL_SHOWS_STATES = {
 	welcomeMessage: false,
@@ -65,6 +66,15 @@ export const App = () => {
 			{counterPreview && (
 				<ExerciseContainer title={"Counter Preview"}>
 					<CounterPreview />
+				</ExerciseContainer>
+			)}
+
+			<Button handleButton={() => handleButton("autoRefreshingClock")}>
+				{`${autoRefreshingClock ? "Hide" : "Show"} Auto Refreshing Clock`}
+			</Button>
+			{autoRefreshingClock && (
+				<ExerciseContainer title={"Auto Refreshing Counter"}>
+					<AutoRefreshingCounter />
 				</ExerciseContainer>
 			)}
 		</>
