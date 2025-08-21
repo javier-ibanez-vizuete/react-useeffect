@@ -10,6 +10,7 @@ import { ProductsOnMount } from "./components/ProductsOnMount/ProductsOnMount";
 import { LocalProductSearch } from "./components/LocalProductSearch/LocalProductSearch";
 import { CartSummary } from "./components/CartSummary/CartSummary";
 import { WindowFocusStatus } from "./components/WindowFocusStatus/WindowFocusStatus";
+import { LocalStorageSync } from "./components/LocalStorageSync/LocalStorageSync";
 
 const INITIAL_SHOWS_STATES = {
 	welcomeMessage: false,
@@ -164,6 +165,14 @@ export const App = () => {
 					<p>
 						Position Y: <span>{mousePosition.y}</span>
 					</p>
+				</ExerciseContainer>
+			)}
+			<Button handleButton={() => handleButton("localStorageSync")}>
+				{`${localStorageSync ? "Hide" : "Show"} Local Storage Sync`}
+			</Button>
+			{localStorageSync && (
+				<ExerciseContainer title={"Local Storage Sync"}>
+					<LocalStorageSync />
 				</ExerciseContainer>
 			)}
 		</>
