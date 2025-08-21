@@ -7,6 +7,7 @@ import { CounterPreview } from "./components/CounterPreview/CounterPreview";
 import { AutoRefreshingCounter } from "./components/AutoRefreshingCounter/AutoRefreshingCounter";
 import { ResponsiveLabel } from "./components/ResponsiveLabel/ResponsiveLabel";
 import { ProductsOnMount } from "./components/ProductsOnMount/ProductsOnMount";
+import { LocalProductSearch } from "./components/LocalProductSearch/LocalProductSearch";
 
 const INITIAL_SHOWS_STATES = {
 	welcomeMessage: false,
@@ -95,6 +96,15 @@ export const App = () => {
 			{productsOnMount && (
 				<ExerciseContainer title={"Products on Mount"}>
 					<ProductsOnMount />
+				</ExerciseContainer>
+			)}
+
+			<Button handleButton={() => handleButton("localProductSearch")}>
+				{`${localProductSearch ? "Hide" : "Show"} Products on Mount (LOCAL PRODUCT SEARCH)`}
+			</Button>
+			{localProductSearch && (
+				<ExerciseContainer title={"Products on Mount (LOCAL PRODUCT SEARCH)"}>
+					<LocalProductSearch />
 				</ExerciseContainer>
 			)}
 		</>
