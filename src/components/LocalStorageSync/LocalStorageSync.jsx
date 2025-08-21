@@ -15,6 +15,7 @@ export const LocalStorageSync = () => {
 		if (inputValue.length === 0)
 			return setWordToDisplay(() => {
 				const wordFromStorage = getDataFromStorage("word_to_display");
+
 				if (wordFromStorage) {
 					return wordFromStorage;
 				}
@@ -25,6 +26,9 @@ export const LocalStorageSync = () => {
 
 	const onInputChange = (event) => {
 		const { value } = event.target;
+
+		document.title = value; // ESTE ES EL EJERCICIO 12 (3 BONUS)
+		if (!value.length) document.title = "Ejercicios UseEffect";
 
 		setInputValue(value);
 		saveDataInStorage("word_to_display", value);
