@@ -9,6 +9,7 @@ import { ResponsiveLabel } from "./components/ResponsiveLabel/ResponsiveLabel";
 import { ProductsOnMount } from "./components/ProductsOnMount/ProductsOnMount";
 import { LocalProductSearch } from "./components/LocalProductSearch/LocalProductSearch";
 import { CartSummary } from "./components/CartSummary/CartSummary";
+import { WindowFocusStatus } from "./components/WindowFocusStatus/WindowFocusStatus";
 
 const INITIAL_SHOWS_STATES = {
 	welcomeMessage: false,
@@ -112,6 +113,15 @@ export const App = () => {
 			{cartSummary && (
 				<ExerciseContainer title={"Cart Summary"}>
 					<CartSummary />
+				</ExerciseContainer>
+			)}
+
+			<Button handleButton={() => handleButton("windowFocusStatus")}>
+				{`${windowFocusStatus ? "Hide" : "Show"} Window Focus Status`}
+			</Button>
+			{windowFocusStatus && (
+				<ExerciseContainer title={"Window Focus Status"}>
+					<WindowFocusStatus />
 				</ExerciseContainer>
 			)}
 		</>
