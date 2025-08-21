@@ -10,3 +10,9 @@ body {
     
 	background-color: #fabada;
 }
+
+.btn-floating {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+}

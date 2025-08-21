@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Button } from "./components/Button/Button";
 import { ExerciseContainer } from "./components/ExerciseContainer/ExerciseContainer";
@@ -28,6 +28,7 @@ const INITIAL_SHOWS_STATES = {
 
 export const App = () => {
 	const [shows, setShows] = useState(INITIAL_SHOWS_STATES);
+	const [height, setheight] = useState(window.scrollY);
 	const {
 		welcomeMessage,
 		counterPreview,
@@ -37,7 +38,6 @@ export const App = () => {
 		localProductSearch,
 		cartSummary,
 		windowFocusStatus,
-		scrollToTopButton,
 		mousePositionTracker,
 		localStorageSync,
 		documentTitleUpdater,
@@ -48,6 +48,21 @@ export const App = () => {
 			return { ...prevValue, [exercise]: !prevValue[exercise] };
 		});
 	};
+
+	const handleScrollButton = () => {
+		window.scrollTo({ behavior: "smooth", top: 0 });
+		setheight(window.scrollY);
+	};
+
+	useEffect(() => {
+		const handleScrollHeight = () => {
+			const newHeight = window.scrollY;
+			setheight(newHeight);
+		};
+		window.addEventListener("scroll", handleScrollHeight);
+
+		return () => window.removeEventListener("scroll", handleScrollHeight);
+	}, []);
 
 	return (
 		<>
@@ -123,6 +138,12 @@ export const App = () => {
 				<ExerciseContainer title={"Window Focus Status"}>
 					<WindowFocusStatus />
 				</ExerciseContainer>
+			)}
+
+			{height > 200 && (
+				<Button handleButton={handleScrollButton} className={"btn-floating"}>
+					Scroll To Top
+				</Button>
 			)}
 		</>
 	);
