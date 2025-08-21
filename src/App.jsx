@@ -8,6 +8,7 @@ import { AutoRefreshingCounter } from "./components/AutoRefreshingCounter/AutoRe
 import { ResponsiveLabel } from "./components/ResponsiveLabel/ResponsiveLabel";
 import { ProductsOnMount } from "./components/ProductsOnMount/ProductsOnMount";
 import { LocalProductSearch } from "./components/LocalProductSearch/LocalProductSearch";
+import { CartSummary } from "./components/CartSummary/CartSummary";
 
 const INITIAL_SHOWS_STATES = {
 	welcomeMessage: false,
@@ -42,9 +43,6 @@ export const App = () => {
 	} = shows;
 
 	const handleButton = (exercise) => {
-		console.log("Haciendo click");
-		console.log("Esto es exercise", exercise);
-
 		setShows((prevValue) => {
 			return { ...prevValue, [exercise]: !prevValue[exercise] };
 		});
@@ -105,6 +103,15 @@ export const App = () => {
 			{localProductSearch && (
 				<ExerciseContainer title={"Products on Mount (LOCAL PRODUCT SEARCH)"}>
 					<LocalProductSearch />
+				</ExerciseContainer>
+			)}
+
+			<Button handleButton={() => handleButton("cartSummary")}>
+				{`${cartSummary ? "Hide" : "Show"} Cart Summary`}
+			</Button>
+			{cartSummary && (
+				<ExerciseContainer title={"Cart Summary"}>
+					<CartSummary />
 				</ExerciseContainer>
 			)}
 		</>

@@ -9,16 +9,14 @@ export const LocalProductSearch = () => {
 
 	const handleFetch = async () => {
 		try {
-			const response = await fetch("https://fakestoreapri.com/products");
+			const response = await fetch("https://fakestoreapi.com/products");
 			const data = await response.json();
-			console.log(data);
 
 			setItems(data);
 			setLocalItems(data);
 		} catch (error) {
 			console.error(error);
 			setErrorFetch(true);
-			console.log("He pasado por aqui");
 		}
 	};
 
