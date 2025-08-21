@@ -29,6 +29,7 @@ const INITIAL_SHOWS_STATES = {
 export const App = () => {
 	const [shows, setShows] = useState(INITIAL_SHOWS_STATES);
 	const [height, setheight] = useState(window.scrollY);
+	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 	const {
 		welcomeMessage,
 		counterPreview,
@@ -55,13 +56,19 @@ export const App = () => {
 	};
 
 	useEffect(() => {
+		const onMouseMove = (event) => setMousePosition({ x: event.clientX, y: event.clientY });
+		window.addEventListener("mousemove", onMouseMove);
+
 		const handleScrollHeight = () => {
 			const newHeight = window.scrollY;
 			setheight(newHeight);
 		};
 		window.addEventListener("scroll", handleScrollHeight);
 
-		return () => window.removeEventListener("scroll", handleScrollHeight);
+		return () => {
+			window.removeEventListener("mousemove", onMouseMove);
+			window.removeEventListener("scroll", handleScrollHeight);
+		};
 	}, []);
 
 	return (
@@ -144,6 +151,20 @@ export const App = () => {
 				<Button handleButton={handleScrollButton} className={"btn-floating"}>
 					Scroll To Top
 				</Button>
+			)}
+
+			<Button handleButton={() => handleButton("mousePositionTracker")}>
+				{`${mousePositionTracker ? "Hide" : "Show"} Mouse Position Tracker`}
+			</Button>
+			{mousePositionTracker && (
+				<ExerciseContainer title={"Mouse Position Tracker"}>
+					<p>
+						Position X: <span>{mousePosition.x}</span>
+					</p>
+					<p>
+						Position Y: <span>{mousePosition.y}</span>
+					</p>
+				</ExerciseContainer>
 			)}
 		</>
 	);
